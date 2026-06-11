@@ -1,0 +1,6 @@
+id,employeeName,leaveType,startDate,endDate,status,reason
+1,Tandrita Mukherjee,Casual Leave,2026-06-10,2026-06-12,Pending,Family function
+2,Rahul Sharma,Sick Leave,2026-06-15,2026-06-16,Approved,Fever
+3,Priya Das,Casual Leave,2026-06-20,2026-06-21,Pending,Personal work
+4,Amit Singh,Sick Leave,2026-06-25,2026-06-27,Rejected,Medical rest
+5,Neha Roy,Casual Leave,2026-06-28,2026-06-30,Pending,Vacation

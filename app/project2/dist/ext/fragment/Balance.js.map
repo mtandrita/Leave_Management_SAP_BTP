@@ -1,0 +1,1 @@
+{"version":3,"file":"Balance.js","names":["sap","ui","define","MessageToast","onWarningSent","alert"],"sources":["Balance-dbg.js"],"mappings":"AAAAA,IAAIC,GAAGC,OAAO,CACV,sBACD,SAAUC,GACT,aAEA,MAAO,CAEJC,cAAe,WAClBC,MAAM,iBACV,EAEA","ignoreList":[]}

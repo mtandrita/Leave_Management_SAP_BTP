@@ -1,0 +1,17 @@
+<mvc:View
+    controllerName="project1.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+
+    <Page title="THIS IS APP VIEW">
+
+        <content>
+
+            <Button
+                text="I SHOULD BE VISIBLE"/>
+
+        </content>
+
+    </Page>
+
+</mvc:View>

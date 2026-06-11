@@ -1,0 +1,2 @@
+sap.ui.define(["sap/m/MessageToast"],function(e){"use strict";return{OnApprove:async function(a){try{var r=a.getModel();var s=a.getObject();var t=r.bindContext("/approveLeave(...)");t.setParameter("ID",s.id);await t.invoke();r.refresh();e.show("Leave approved successfully.")}catch(a){console.error(a);e.show("Approval failed.")}}}});
+//# sourceMappingURL=CreateApproveButton.js.map

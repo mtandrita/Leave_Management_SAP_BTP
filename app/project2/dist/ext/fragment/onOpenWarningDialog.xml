@@ -1,0 +1,28 @@
+<Dialog
+    id="warningDialog"
+    title="Issue Warning">
+
+    <VBox class="sapUiMediumMargin">
+
+        <Label text="Warning Message"/>
+
+        <TextArea
+            id="warningText"
+            rows="5"
+            width="100%"/>
+
+    </VBox>
+
+    <beginButton>
+        <Button
+            text="Send"
+            press=".onSendWarning"/>
+    </beginButton>
+
+    <endButton>
+        <Button
+            text="Cancel"
+            press=".onCloseWarningDialog"/>
+    </endButton>
+
+</Dialog>

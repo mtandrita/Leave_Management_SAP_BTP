@@ -1,0 +1,382 @@
+<mvc:View
+    controllerName="project1.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:unified="sap.ui.unified">
+
+    <VBox class="sapUiMediumMargin customBackground">
+
+        <!-- Header -->
+        <HBox justifyContent="SpaceBetween" alignItems="Center">
+<Button
+    id="notificationBell"
+    icon="sap-icon://bell"
+    text="0"
+    press="onOpenNotifications"
+    type="Transparent"/>
+
+    
+
+    
+
+
+            <Title
+                text="Employee Leave Dashboard"
+                level="H1"/>
+
+            <Avatar
+                initials="TM"
+                press="onOpenProfile"
+                tooltip="View Profile"/>
+
+        </HBox>
+
+        <!-- Leave Balance -->
+        <Panel
+            headerText="Leave Balance Overview"
+            class="sapUiMediumMarginTop">
+
+            <HBox
+                justifyContent="SpaceAround"
+                wrap="Wrap">
+
+                <GenericTile
+                    header="Casual Leave"
+                    subheader="Available">
+
+                    <TileContent>
+                    <NumericContent
+    id="casualBalanceTile"
+    value="18"
+    valueColor="Good"/>
+                    </TileContent>
+
+                </GenericTile>
+
+                <GenericTile
+                    header="Sick Leave"
+                    subheader="Available">
+
+                    <TileContent>
+                       <NumericContent
+    id="sickBalanceTile"
+    value="7"
+    valueColor="Good"/>
+                    </TileContent>
+
+                </GenericTile>
+
+                <GenericTile
+                    header="Earned Leave"
+                    subheader="Available">
+
+                    <TileContent>
+                        <NumericContent
+                            value="0"
+                            valueColor="Neutral"/>
+                    </TileContent>
+
+                </GenericTile>
+
+            </HBox>
+
+        </Panel>
+
+        <!-- Policy -->
+        <Panel
+            headerText="Leave Policies"
+            class="sapUiMediumMarginTop">
+            <MessageStrip
+    text="Leave Policy: Employees are entitled to 18 Casual Leaves and 7 Sick Leaves per financial year. Half-Day Leave is permitted for either the Morning or Afternoon session and is counted as 0.5 day."
+    type="Information"
+    showIcon="true"
+    class="sapUiSmallMarginBottom"/>
+
+            
+        </Panel>
+
+        <!-- Calendar -->
+        <Panel
+            headerText="Request Overview"
+            class="sapUiMediumMarginTop">
+
+            
+
+            <HBox justifyContent="Center">
+
+    <unified:Calendar
+        id="calendar1"
+        width="350px"
+        intervalSelection="true"
+        class="sapUiSmallMarginEnd"/>
+
+    <unified:Calendar
+        id="calendar2"
+        width="350px"
+        intervalSelection="true"/>
+
+</HBox>
+
+        </Panel>
+
+        <!-- Status Legend -->
+        <HBox
+            class="sapUiMediumMarginTop"
+            wrap="Wrap">
+
+            <ObjectStatus
+                text="Pending"
+                state="Warning"
+                class="sapUiSmallMarginEnd"/>
+
+            <ObjectStatus
+                text="Approved"
+                state="Success"
+                class="sapUiSmallMarginEnd"/>
+
+            <ObjectStatus
+                text="Rejected"
+                state="Error"/>
+
+        </HBox>
+
+        <!-- Buttons -->
+        <HBox class="sapUiMediumMarginTop">
+
+            <Button
+                text="Apply Leave"
+                type="Emphasized"
+                press=".onApplyLeave"/>
+
+            <Button
+                text="Leave History"
+                class="sapUiTinyMarginBegin"
+                press=".onOpenHistory"/>
+
+        </HBox>
+
+        <Dialog
+    id="notificationDialog"
+    title="Notifications"
+    contentWidth="500px">
+
+    <List
+        id="notificationList"
+        items="{/Notification}">
+
+        <items>
+
+            <StandardListItem
+                title="{message}"
+                description="{createdAt}"/>
+
+        </items>
+
+    </List>
+
+    <endButton>
+
+        <Button
+            text="Close"
+            press="onCloseNotifications"/>
+
+    </endButton>
+
+</Dialog>
+
+        <!-- Profile Dialog -->
+        <Dialog
+            id="profileDialog"
+            title="Employee Profile"
+            contentWidth="350px">
+
+            <VBox class="sapUiMediumMargin">
+
+                <Text text="Name: Tandrita Mukherjee"/>
+                <Text text="Email: mtandrita05@gmail.com"/>
+                <Text text="Phone: +91 8276452101"/>
+                <Text text="Designation: Systems Engineer Intern"/>
+
+            </VBox>
+
+            <endButton>
+
+                <Button
+                    text="Close"
+                    press="onCloseProfile"/>
+
+            </endButton>
+
+        </Dialog>
+
+        <!-- Leave History -->
+        <Dialog
+    id="historyDialog"
+    title="Leave History"
+    contentWidth="700px">
+
+    <Table
+        id="historyTable"
+        items="{/LeaveRequest}">
+
+        <columns>
+
+            <Column>
+                <Text text="Leave Type"/>
+            </Column>
+
+            <Column>
+                <Text text="From"/>
+            </Column>
+
+            <Column>
+                <Text text="To"/>
+            </Column>
+
+            <Column>
+                <Text text="Status"/>
+            </Column>
+
+        </columns>
+
+        <items>
+
+            <ColumnListItem>
+
+                <cells>
+
+                    <Text text="{leaveType}"/>
+
+                    <Text text="{startDate}"/>
+
+                    <Text text="{endDate}"/>
+
+                    <ObjectStatus
+                        text="{status}"
+                        state="{= ${status} === 'Approved' ? 'Success' : ${status} === 'Rejected' ? 'Error' : 'Warning' }"/>
+
+                </cells>
+
+            </ColumnListItem>
+
+        </items>
+
+    </Table>
+
+    <endButton>
+        <Button
+            text="Close"
+            press="onCloseHistory"/>
+    </endButton>
+
+</Dialog>
+
+        <!-- Apply Leave -->
+        <Dialog
+            id="leaveDialog"
+            title="Apply Leave"
+            contentWidth="450px">
+
+            <VBox class="sapUiMediumMargin">
+
+                <Label text="Employee"/>
+
+                <Select id="employeeSelect">
+
+                    <items>
+
+                        <core:Item
+                            text="Tandrita Mukherjee"/>
+
+                    </items>
+
+                </Select>
+
+                <Label text="Leave Type"/>
+
+                <Select id="leaveTypeSelect">
+
+                    <items>
+
+                        <core:Item text="Casual Leave"/>
+                        <core:Item text="Sick Leave"/>
+
+                    </items>
+
+                </Select>
+
+                <Label text="From Date"/>
+
+                <DatePicker id="fromDate"/>
+
+                <Label text="To Date"/>
+
+                <DatePicker id="toDate"/>
+
+                <!-- Half Day -->
+
+                <Label text="Half Day Leave"/>
+
+                <CheckBox
+                    id="halfDayBox"
+                    text="Apply for Half Day"
+                    select=".onHalfDayToggle"/>
+
+                <VBox
+                    id="halfDayContainer"
+                    visible="false"
+                    class="sapUiSmallMarginTop">
+
+                    <Label text="Select Session"/>
+
+                    <SegmentedButton
+                        id="halfDayPeriod">
+
+                        <items>
+
+                            <SegmentedButtonItem
+                                key="Morning"
+                                text="Morning"/>
+
+                            <SegmentedButtonItem
+                                key="Afternoon"
+                                text="Afternoon"/>
+
+                        </items>
+
+                    </SegmentedButton>
+
+                </VBox>
+
+                <Label text="Reason"/>
+
+                <TextArea
+                    id="reasonText"
+                    rows="4"
+                    placeholder="Enter reason"/>
+
+            </VBox>
+
+            <beginButton>
+
+                <Button
+                    text="Submit"
+                    type="Emphasized"
+                    press=".onSubmitLeave"/>
+
+            </beginButton>
+
+            <endButton>
+
+                <Button
+                    text="Cancel"
+                    press="onCloseDialog"/>
+
+            </endButton>
+
+        </Dialog>
+
+    </VBox>
+
+</mvc:View>

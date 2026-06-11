@@ -1,0 +1,178 @@
+_schema-version: 3.3.0
+ID: Leave_SAP
+description: A simple CAP project.
+version: 1.0.0
+modules:
+- name: Leave_SAP-srv
+  type: nodejs
+  path: gen/srv
+  requires:
+  - name: Leave_SAP-db
+  - name: uaa_Leave_SAP
+  provides:
+  - name: srv-api
+    properties:
+      srv-url: ${default-url}
+  parameters:
+    buildpack: nodejs_buildpack
+    instances: 1
+  build-parameters:
+    builder: npm-ci
+- name: Leave_SAP-db-deployer
+  type: hdb
+  path: gen/db
+  requires:
+  - name: Leave_SAP-db
+  parameters:
+    buildpack: nodejs_buildpack
+- name: Leave_SAP-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: Leave_SAP-repo-host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - project1.zip
+      name: project1
+      target-path: resources/
+    - artifacts:
+      - project2.zip
+      name: project2
+      target-path: resources/
+- name: project1
+  type: html5
+  path: app/project1
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: project2
+  type: html5
+  path: app/project2
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: Leave_SAP-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: Leave_SAP-destination-service
+    parameters:
+      content-target: true
+  - name: Leave_SAP-repo-host
+    parameters:
+      service-key:
+        name: Leave_SAP-repo-host-key
+  - name: uaa_Leave_SAP
+    parameters:
+      service-key:
+        name: uaa_Leave_SAP-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: Leave_Management_Leave_SAP_repo_host
+          ServiceInstanceName: Leave_SAP-html5-service
+          ServiceKeyName: Leave_SAP-repo-host-key
+          sap.cloud.service: Leave_Management
+        - Authentication: OAuth2UserTokenExchange
+          Name: Leave_Management_uaa_Leave_SAP
+          ServiceInstanceName: Leave_SAP-xsuaa-service
+          ServiceKeyName: uaa_Leave_SAP-key
+          sap.cloud.service: Leave_Management
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: Leave_SAP
+  type: approuter.nodejs
+  path: app/router
+  requires:
+  - name: srv-api
+    group: destinations
+    properties:
+      forwardAuthToken: true
+      name: srv-api
+      url: ~{srv-url}
+  - name: uaa_Leave_SAP
+  - name: Leave_SAP-destination-service
+    group: destinations
+    properties:
+      forwardAuthToken: false
+      name: ui5
+      url: https://ui5.sap.com
+  provides:
+  - name: app-api
+    properties:
+      app-protocol: ${protocol}
+      app-uri: ${default-uri}
+  parameters:
+    disk-quota: 256M
+    keep-existing-routes: true
+    memory: 256M
+resources:
+- name: Leave_SAP-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: Leave_SAP-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: Leave_SAP-html5-service
+    service-plan: app-host
+- name: Leave_SAP-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: Leave_SAP-destination-service
+    service-plan: lite
+- name: uaa_Leave_SAP
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      oauth2-configuration:
+        credential-types:
+        - binding-secret
+        - x509
+        redirect-uris:
+        - https://*~{app-api/app-uri}/**
+      tenant-mode: dedicated
+      xsappname: Leave_SAP-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: Leave_SAP-xsuaa-service
+    service-plan: application
+  requires:
+  - name: app-api
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm ci
+    - npx cds build --production

@@ -1,0 +1,12 @@
+.customBackground {
+    background: linear-gradient(
+        rgba(173, 216, 230, 0.25),
+        rgba(173, 216, 230, 0.10)
+    );
+    min-height: 100vh;
+    padding: 1rem;
+}
+.bigTitle {
+    font-size: 1.8rem;   /* increase as needed */
+    font-weight: bold;
+}/* Enter your custom styles here */

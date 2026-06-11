@@ -1,0 +1,32 @@
+
+/* Target the inner text element of the Approve button */
+button[id*="CustomApproveButton"] .sapMBtnText {
+    color: rgb(11, 84, 30) !important;
+}
+
+/* Optional: If you want to change the background container color as well */
+button[id*="CustomApproveButton"] {
+    background-color: #e9f3e9 !important;
+    border-color: #637b63 !important;
+    border-radius: 10px !important;
+}
+
+/* Target the inner text element of the Reject button */
+button[id*="customRejectButton"] .sapMBtnText {
+    color: rgb(228, 83, 15) !important;
+}
+
+/* Optional: If you want to change the background container color as well */
+button[id*="customRejectButton"] {
+    background-color: #f0e9e9 !important;
+    border-color: #cfb0b3 !important;
+    border-radius: 10px !important;
+}
+button[id*="giveWarning"]{
+    background-color: #f31d1d !important;
+    border-color: #f3e8e9 !important;
+    border-radius: 10px !important;
+}
+button[id*="giveWarning"] .sapMBtnText {
+    color: rgb(255, 255, 255) !important;
+}

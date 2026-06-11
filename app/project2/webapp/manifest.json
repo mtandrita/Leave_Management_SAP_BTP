@@ -1,0 +1,206 @@
+{
+  "_version": "1.85.0",
+  "sap.app": {
+    "id": "project2",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "Admin Dashboard",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.25.0",
+      "toolsId": "0aed9a0d-49b4-4953-a318-67cece0a1b69"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/leave/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "Admin_Leave_Management-display": {
+          "semanticObject": "Admin_Leave_Management",
+          "action": "display",
+          "title": "{{Admin_Leave_Management-display.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.148.1",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "project2.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "ext/css/styles.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "LeaveRequestList",
+          "target": "LeaveRequestList"
+        },
+        {
+          "pattern": "LeaveRequest({key}):?query:",
+          "name": "LeaveRequestObjectPage",
+          "target": "LeaveRequestObjectPage"
+        }
+      ],
+      "targets": {
+        "LeaveRequestList": {
+          "type": "Component",
+          "id": "LeaveRequestList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/LeaveRequest",
+              "variantManagement": "None",
+              "navigation": {
+                "LeaveRequest": {
+                  "detail": {
+                    "route": "LeaveRequestObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable",
+                    "enableMassEdit": true
+                  }
+                }
+              },
+              "hideFilterBar": false
+            }
+          }
+        },
+        "LeaveRequestObjectPage": {
+          "type": "Component",
+          "id": "LeaveRequestObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/LeaveRequest",
+              "variantManagement": "Control",
+              "content": {
+                "footer": {
+                  "actions": {
+                    "CustomApproveButton": {
+                      "press": "project2.ext.controller.CreateApproveButton.OnApprove",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Approve"
+                    },
+                    "customRejectButton": {
+                      "press": "project2.ext.controller.CreateRejectButton.onRejection",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Reject",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "CustomApproveButton"
+                      }
+                    },
+                    "giveWarning": {
+                      "press": "project2.ext.controller.GiveWarning.onWarning",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Give Warning",
+                      "position": {
+                        "placement": "Before",
+                        "anchor": "CustomApproveButton"
+                      }
+                    }
+                  }
+                },
+                "body": {
+                  "sections": {
+                    "Balance": {
+                      "template": "project2.ext.fragment.Balance",
+                      "title": "Leave Information"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.fe": {
+    "app": {
+      "enableLazyLoading": true
+    }
+  }
+}
