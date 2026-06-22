@@ -93,7 +93,7 @@ To run this project locally, follow these steps:
 5.  **Access the App:** Open `http://localhost:4004` in your browser to view the CAP launchpad and launch your UI5 applications.
 
 ---
-
+```
 ## 🤝 Acknowledgments
 
 I would like to express my sincere gratitude to my mentors at **Infocus Technologies, Kolkata** for their guidance, architectural feedback, and support throughout this internship. This project transformed my understanding of enterprise cloud computing and ignited a strong interest in building scalable applications with SAP technologies.
