@@ -30,13 +30,12 @@ The application is built on a modern, decoupled cloud architecture:
 ## 📸 Application Walkthrough & Screenshots
 
 ### 1. Employee Dashboard
-The employee view focuses on simplicity, allowing quick attendance logging, profile management, and daily task or channel visibility.
-
+The employee view focuses on simplicity, allowing users to check their available leave balances, view past request statuses, and submit new leave requests.
 > 🖼️ **Employee Page:**
 > ![Employee Dashboard](./media/Employee_portal.png)`
 
 ### 2. Admin Portal
-The administrative interface provides a bird's-eye view of all system data, allowing managers to view robust data grids, manage user roles, update channel settings, and analyze logs.
+The administrative interface provides a bird's-eye view of all system data, allowing managers to view robust data grids, process pending requests, and manage employee allocations.
 
 > 🖼️ **Admin Page:**
 > ![Admin Portal](./media/Admin_portal.png)`
@@ -96,3 +95,11 @@ To run this project locally, follow these steps:
 ## 🤝 Acknowledgments
 
 I would like to express my sincere gratitude to my mentors at **Infocus Technologies, Kolkata** for their guidance, architectural feedback, and support throughout this internship. This project transformed my understanding of enterprise cloud computing and ignited a strong interest in building scalable applications with SAP technologies.
+
+---
+
+## 📜 Internship Verification
+
+To verify the authenticity of this project and my tenure at Infocus Technologies, Kolkata, you can view my official internship completion certificate below:
+
+![Internship Certificate](./media/Certificate.pdf)
