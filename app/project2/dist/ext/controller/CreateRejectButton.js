@@ -1,2 +1,2 @@
-sap.ui.define(["sap/m/MessageToast"],function(e){"use strict";return{onRejection:async function(s){try{await s.setProperty("status","Rejected");e.show("Leave rejected successfully.")}catch(s){console.error(s);e.show("Rejection failed.")}}}});
+sap.ui.define(["sap/m/MessageToast"],function(e){"use strict";return{onRejection:async function(t){try{var a=t.getModel();var r=t.getObject();var s=a.bindContext("/rejectLeave(...)");s.setParameter("ID",r.id);await s.invoke();a.refresh();e.show("Leave rejected successfully.")}catch(t){console.error(t);e.show("Rejection failed.")}}}});
 //# sourceMappingURL=CreateRejectButton.js.map

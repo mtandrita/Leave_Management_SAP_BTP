@@ -1,12 +1,837 @@
 .customBackground {
-    background: linear-gradient(
-        rgba(173, 216, 230, 0.25),
-        rgba(173, 216, 230, 0.10)
-    );
-    min-height: 100vh;
-    padding: 1rem;
+min-height: 100vh;
+background: linear-gradient(
+180deg,
+#eef4fb 0%,
+#f8fbff 35%,
+#ffffff 100%
+);
+padding: 1.5rem;
 }
+
+/* ==========================================
+GENERAL
+========================================== */
+
 .bigTitle {
-    font-size: 1.8rem;   /* increase as needed */
-    font-weight: bold;
-}/* Enter your custom styles here */
+font-size: 1.8rem;
+font-weight: bold;
+}
+
+/* ==========================================
+NOTIFICATION BELL
+========================================== */
+
+.notificationContainer {
+position: relative;
+display: inline-block;
+}
+
+.notificationBadge {
+position: relative;
+top: -48px;
+right: -24px;
+min-width: 18px;
+height: 18px;
+
+border-radius: 50%;
+
+background: #ff3b30;
+
+color: white !important;
+
+font-size: 11px;
+font-weight: bold;
+
+text-align: center;
+line-height: 18px;
+
+padding: 0 3px;
+
+z-index: 999;
+
+
+}
+
+.notificationBell {
+background: white !important;
+
+
+border-radius: 50% !important;
+
+width: 48px !important;
+height: 48px !important;
+
+box-shadow:
+    0 2px 10px rgba(0, 0, 0, .08);
+
+
+}
+
+.notificationBell .sapUiIcon {
+color: #1976d2 !important;
+font-size: 1.2rem !important;
+}
+
+/* ==========================================
+DASHBOARD CARD
+========================================== */
+
+.dashboardCard {
+background: #ffffff !important;
+
+
+border-radius: 18px !important;
+
+padding: 1.75rem !important;
+
+border: 1px solid #edf1f5 !important;
+
+box-shadow:
+    0 4px 14px rgba(0, 0, 0, .04) !important;
+
+
+}
+
+/* ==========================================
+CARD HEADERS
+========================================== */
+
+.cardHeaderBar {
+border-bottom: 1px solid #edf1f5;
+
+
+padding-bottom: 1rem;
+
+margin-bottom: 1.5rem !important;
+
+
+}
+
+.cardHeaderIcon {
+color: #1976d2 !important;
+font-size: 1.25rem !important;
+}
+
+.cardHeaderText {
+font-weight: 600 !important;
+color: #1f2937 !important;
+font-size: 1.15rem !important;
+}
+
+/* ==========================================
+LEAVE BALANCE CARDS
+========================================== */
+
+.balanceTile {
+    flex: 1;
+    min-width: 280px;
+    max-width: 380px;
+
+    height: 165px;
+
+    padding: 1.75rem;
+
+    border-radius: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    box-sizing: border-box;
+
+    border: 1px solid #edf1f5;
+
+    box-shadow:
+        0 4px 14px rgba(0,0,0,.04);
+
+    transition: all .25s ease;
+
+    margin-bottom: 1rem;
+}
+
+.balanceTile:hover {
+transform: translateY(-3px);
+
+
+box-shadow:
+    0 10px 28px rgba(0,0,0,.08);
+
+
+}
+
+/* ==========================================
+CARD COLORS
+========================================== */
+
+.casualCard {
+border-left: 5px solid #1db954 !important;
+
+
+background:
+    linear-gradient(
+        135deg,
+        #ffffff,
+        #f5fcf7
+    );
+
+
+}
+
+.sickCard {
+border-left: 5px solid #f57c00 !important;
+
+
+background:
+    linear-gradient(
+        135deg,
+        #ffffff,
+        #fff8f2
+    );
+
+
+}
+
+.paidCard {
+border-left: 5px solid #2196f3 !important;
+
+
+background:
+    linear-gradient(
+        135deg,
+        #ffffff,
+        #f5faff
+    );
+
+
+}
+
+/* ==========================================
+TILE ICONS
+========================================== */
+
+.leaveTileIcon {
+font-size: 3rem !important;
+
+
+width: 60px !important;
+min-width: 60px !important;
+
+text-align: center;
+
+margin-right: 1rem;
+
+
+}
+
+.casualIcon {
+color: #1db954 !important;
+}
+
+.sickIcon {
+color: #f57c00 !important;
+}
+
+.paidIcon {
+color: #2196f3 !important;
+}
+
+/* ==========================================
+TILE TEXT
+========================================== */
+
+.leaveTitle {
+color: #1f2937 !important;
+
+
+font-weight: 600 !important;
+
+margin-bottom: .4rem;
+
+
+}
+
+.leaveValue {
+font-size: 2.4rem !important;
+
+
+font-weight: 700 !important;
+
+color: #2e7d32 !important;
+
+line-height: 1;
+
+
+}
+
+.leaveDays {
+margin-left: .4rem;
+
+
+margin-bottom: .3rem;
+
+color: #64748b;
+
+font-size: .95rem;
+
+
+}
+
+.leaveAvailable {
+color: #64748b;
+
+font-size: .9rem;
+
+margin-top: .25rem;
+
+}
+
+/* ==========================================
+POLICY & REQUEST CARDS
+========================================== */
+
+.requestCard,
+.policyCard {
+background: #ffffff;
+
+
+border-radius: 16px;
+
+padding: 1.5rem;
+
+border: 1px solid #edf1f5;
+
+box-shadow:
+    0 2px 8px rgba(0,0,0,.04);
+
+
+}
+
+/* ==========================================
+LEGEND PANEL
+========================================== */
+
+.legendPanel {
+min-width: 220px;
+
+
+border-left: 1px solid #edf1f5;
+
+padding-left: 1.5rem;
+
+
+}
+
+/* ==========================================
+CALENDAR
+========================================== */
+
+.dashboardCalendar {
+border: none !important;
+}
+
+.sapUiCal {
+border: none !important;
+box-shadow: none !important;
+}
+
+.sapUiUnifiedCalMonthView {
+border: none !important;
+}
+
+/* ==========================================
+RESPONSIVE
+========================================== */
+
+@media (max-width: 1200px) {
+.balanceTile {
+width: 100%;
+}
+
+
+.legendPanel {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #edf1f5;
+    padding-left: 0;
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+
+}
+.leaveCardsContainer {
+    gap: 1rem;
+}
+/* ==========================================
+APPLY LEAVE BUTTON Custom Styles
+========================================== */
+.customApplyBtn {
+    background-color: #0a6ed1 !important;
+    border: 1px solid #0a6ed1 !important;
+    height: 2.5rem !important;
+}
+
+.customApplyBtn .sapMBtnContent {
+    color: #ffffff !important;
+    font-weight: 500 !important;
+}
+
+.customApplyBtn .sapUiIcon {
+    color: #ffffff !important;
+    float: right;
+    line-height: inherit !important;
+}
+
+/* ==========================================
+LEAVE HISTORY BUTTON Custom Styles
+========================================== */
+.customHistoryBtn {
+    background-color: #ffffff !important;
+    border: 1px solid #b3d1f2 !important;
+    height: 2.5rem !important;
+    border-radius: 6px !important;
+}
+
+.customHistoryBtn .sapMBtnContent {
+    color: #0a6ed1 !important;
+    font-weight: 500 !important;
+}
+
+.customHistoryBtn .sapUiIcon {
+    color: #0a6ed1 !important;
+    float: right;
+    line-height: inherit !important;
+}
+
+/* Smooth hover styling for the history button */
+.customHistoryBtn:hover {
+    background-color: #f4f9ff !important;
+    border-color: #0a6ed1 !important;
+}
+/* ==========================================
+NOTIFICATIONS MODAL DIALOG OVERRIDES
+========================================== */
+.customNotificationDialog {
+    border-radius: 16px !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+.customNotificationDialog .sapMDialogSection {
+    background-color: #ffffff !important;
+    padding: 1.5rem !important;
+}
+
+/* HEADER ELEMENTS */
+.dialogHeaderArea {
+    padding-bottom: 0.5rem;
+}
+
+.headerIconBell {
+    background: #eef4fb !important;
+    border-radius: 50% !important;
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.headerIconBell .sapUiIcon {
+    color: #0a6ed1 !important;
+    font-size: 1.15rem !important;
+}
+
+.headerDialogTitle {
+    font-size: 1.45rem !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+}
+
+.circleCloseButton {
+    background-color: #f3f4f6 !important;
+    border-radius: 50% !important;
+    width: 36px !important;
+    height: 36px !important;
+}
+
+.circleCloseButton .sapUiIcon {
+    color: #4b5563 !important;
+    font-size: 0.85rem !important;
+}
+
+/* ==========================================
+STREAM LAYOUT CARDS
+========================================== */
+.notificationStreamCard {
+    background: #ffffff !important;
+    border: 1px solid #f3f4f6 !important;
+    border-radius: 12px !important;
+    margin-bottom: 0.75rem !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01) !important;
+}
+
+/* Highlight card on row hover */
+.notificationStreamCard:hover {
+    background: #fcfdfe !important;
+}
+
+.cardInnerContent {
+    padding: 1.25rem !important;
+}
+
+/* ==========================================
+DYNAMIC ICON BOX STATES
+========================================== */
+/* ==========================================
+TEXT SPACING & DYNAMIC WEIGHTS
+========================================== */
+.systemTimestampText {
+    font-size: 0.8rem;
+    color: #2563eb;
+    font-weight: 500;
+}
+
+/* Base style for message content */
+.notificationMessageContent {
+    font-size: 0.95rem;
+    line-height: 1.45;
+    color: #111827;
+}
+
+/* Condition 1: Unread notifications stay crisp and Bold */
+.unreadBold {
+    font-weight: 700 !important;
+}
+
+/* Condition 2: Read notifications shift to standard clean regular weight */
+.readNormal {
+    font-weight: 400 !important;
+    color: #4b5563 !important; /* Slightly lighter gray to indicate it was already viewed */
+}
+/* ==========================================
+DYNAMIC BADGE PILL STATES
+========================================== */
+.statusBadgePill { 
+    padding: 0.25rem 0.65rem !important; 
+    border-radius: 12px !important; 
+    font-size: 0.75rem !important; 
+    font-weight: 600 !important; 
+    text-align: center; 
+}
+
+.badgeRejected { background-color: #fef2f2 !important; color: #ef4444 !important; }
+.badgeApproved { background-color: #f0fdf4 !important; color: #22c55e !important; }
+.badgeWarning { background-color: #fff7ed !important; color: #f97316 !important; }
+
+/* FOOTER BUTTON */
+.footerCloseActionBtn .sapMBtnContent {
+    color: #0a6ed1 !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+}
+/* ==========================================
+LEAVE HISTORY DIALOG OVERRIDES
+========================================== */
+.customHistoryDialog {
+    border-radius: 16px !important;
+}
+
+.customHistoryDialog .sapMDialogSection {
+    background-color: #ffffff !important;
+    padding: 1.5rem !important;
+}
+
+.headerIconHistory {
+    background: #eef4fb !important;
+    border-radius: 50% !important;
+    width: 40px !important;
+    height: 40px !important;
+}
+
+.headerIconHistory .sapUiIcon {
+    color: #0a6ed1 !important;
+    font-size: 1.15rem !important;
+}
+
+/* TABLE CUSTOM STYLING */
+.customHistoryTable {
+    background-color: transparent !important;
+}
+
+.customHistoryTable .sapMListHdrCell {
+    background-color: #f8fbff !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.columnHeaderText {
+    color: #1f2937 !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+}
+
+/* TABLE CELL ROW WORK */
+.historyRowItem {
+    height: 4.5rem !important;
+    border-bottom: 1px solid #f3f4f6 !important;
+}
+
+.rowMainText {
+    font-size: 0.95rem !important;
+    color: #1f2937;
+}
+
+.fontSemiBold {
+    font-weight: 500 !important;
+}
+
+.textMutedColor {
+    color: #4b5563 !important;
+}
+
+/* ==========================================
+IN-CELL DYNAMIC TYPE ICONS
+========================================== */
+.historyTypeIconBox {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.historyTypeIconBox .sapUiIcon {
+    font-size: 1.1rem !important;
+}
+
+/* Casual Leave Icon Style */
+.historyCasualIcon { background-color: #f0fdf4; }
+.historyCasualIcon .sapUiIcon { color: #1db954 !important; }
+
+/* Sick Leave Icon Style */
+.historySickIcon { background-color: #fff7ed; }
+.historySickIcon .sapUiIcon { color: #f57c00 !important; }
+
+/* Paid Leave Icon Style */
+.historyPaidIcon { background-color: #f5faff; }
+.historyPaidIcon .sapUiIcon { color: #2196f3 !important; }
+
+/* ==========================================
+DYNAMIC PILL STATUS OVERRIDES
+========================================== */
+.historyStatusBadge {
+    padding: 0.35rem 0.75rem !important;
+    border-radius: 8px !important;
+    display: inline-block !important;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    text-align: center;
+}
+
+/* Map standard SAP states directly to your modern mockup layout colors */
+.historyStatusBadge.sapMObjectStatusError {
+    background-color: #fef2f2 !important;
+    border: none !important;
+}
+.historyStatusBadge.sapMObjectStatusError .sapMObjectStatusText {
+    color: #ef4444 !important;
+}
+.historyStatusBadge.sapMObjectStatusError .sapUiIcon {
+    color: #ef4444 !important;
+    margin-right: 0.25rem;
+}
+
+.historyStatusBadge.sapMObjectStatusSuccess {
+    background-color: #f0fdf4 !important;
+    border: none !important;
+}
+.historyStatusBadge.sapMObjectStatusSuccess .sapMObjectStatusText {
+    color: #22c55e !important;
+}
+
+.historyStatusBadge.sapMObjectStatusWarning {
+    background-color: #fff7ed !important;
+    border: none !important;
+}
+.historyStatusBadge.sapMObjectStatusWarning .sapMObjectStatusText {
+    color: #f97316 !important;
+}
+
+/* FOOTER DIRECTIVE BUTTON */
+.dialogFooterBlueBtn {
+    background-color: #0a6ed1 !important;
+    border: 1px solid #0a6ed1 !important;
+    padding: 0 1.5rem !important;
+    height: 2.5rem !important;
+    border-radius: 6px !important;
+}
+
+.dialogFooterBlueBtn .sapMBtnContent {
+    color: #ffffff !important;
+    font-weight: 500 !important;
+}
+
+/* ==========================================
+APPLY LEAVE MODAL DIALOG OVERRIDES
+========================================== */
+.customApplyLeaveDialog {
+    border-radius: 16px !important;
+}
+
+.customApplyLeaveDialog .sapMDialogSection {
+    background-color: #ffffff !important;
+    padding: 1.75rem !important;
+}
+
+.headerIconApply {
+    background: #eef4fb !important;
+    border-radius: 50% !important;
+    width: 44px !important;
+    height: 44px !important;
+}
+
+.headerIconApply .sapUiIcon {
+    color: #0a6ed1 !important;
+    font-size: 1.25rem !important;
+}
+
+.headerSubtitleText {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 0.15rem;
+}
+
+/* ==========================================
+FORM CONTROLS UI SHAPING
+========================================== */
+.customFormLabel {
+    font-weight: 600 !important;
+    color: #1f2937 !important;
+    font-size: 0.9rem !important;
+    margin-bottom: 0.4rem !important;
+    margin-top: 0.4rem !important;
+}
+
+/* Rounded gray wrapper background for input fields */
+.inputIconWrapper {
+    background-color: #f3f4f6;
+    border-radius: 8px;
+    padding: 0 0.75rem;
+    height: 2.75rem;
+    border: 1px solid #e5e7eb;
+}
+
+.inputFieldInlineIcon {
+    color: #6b7280 !important;
+    font-size: 1rem !important;
+    margin-right: 0.5rem;
+}
+
+/* Inner field reset overrides */
+.customFormInput, .customFormSelect {
+    background: transparent !important;
+    border: none !important;
+    width: 100% !important;
+}
+.customFormInput .sapMInputBaseInner, .customFormSelect .sapMSelectInner {
+    background: transparent !important;
+    border: none !important;
+    color: #1f2937 !important;
+    font-weight: 500;
+}
+
+.customFormDatePicker .sapMInputBaseInner {
+    background-color: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 8px !important;
+    height: 2.75rem !important;
+}
+
+.customFormTextArea .sapMTextAreaInner {
+    border: 1px solid #d1d5db !important;
+    border-radius: 8px !important;
+    padding: 0.75rem !important;
+}
+
+/* ==========================================
+INFO CALLOUT CARD BOX
+========================================== */
+.infoCalloutBox {
+    background-color: #f0f7ff;
+    border: 1px solid #e0effe;
+    border-radius: 8px;
+    padding: 1rem !important;
+}
+
+.calloutInfoIcon {
+    color: #0a6ed1 !important;
+    font-size: 1.1rem !important;
+}
+
+.calloutInfoText {
+    color: #1e40af;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* ==========================================
+FOOTER CONTAINER ACTION BUTTONS
+========================================== */
+.submitActionBtn {
+    background-color: #0a6ed1 !important;
+    border-color: #0a6ed1 !important;
+}
+
+.submitActionBtn .sapMBtnContent {
+    font-weight: 600 !important;
+}
+
+.dialogFooterCancelBtn {
+    background-color: #ffffff !important;
+    border: 1px solid #d1d5db !important;
+    border-radius: 6px !important;
+    height: 2.5rem !important;
+    padding: 0 1.25rem !important;
+}
+.dialogFooterCancelBtn .sapMBtnContent {
+    color: #0a6ed1 !important;
+    font-weight: 500 !important;
+}
+/* ==========================================
+FIXED LEAVE TYPE WITH INTEGRATED ICON
+========================================== */
+.customFormSelectWithIcon {
+    height: 2.75rem !important;
+}
+
+/* Style the main input container of the Select box */
+.customFormSelectWithIcon .sapMSelectInner {
+    background-color: #f3f4f6 !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    height: 2.75rem !important;
+    line-height: 2.65rem !important;
+    padding-left: 0.5rem !important;
+}
+
+/* Style the integrated folder icon specifically */
+.customFormSelectWithIcon .sapMSelectIcon {
+    color: #6b7280 !important;
+    font-size: 1rem !important;
+    margin-right: 0.5rem !important;
+    line-height: 2.75rem !important;
+}
+
+/* Correct text styling so it has plenty of space next to the icon */
+.customFormSelectWithIcon .sapMSelectTextField {
+    color: #1f2937 !important;
+    font-weight: 500 !important;
+    font-size: 0.95rem !important;
+    line-height: 2.75rem !important;
+}
+
+/* Keep the dropdown arrow button matching perfectly on the right edge */
+.customFormSelectWithIcon .sapMSelectArrow {
+    background-color: transparent !important;
+    color: #6b7280 !important;
+    line-height: 2.75rem !important;
+}

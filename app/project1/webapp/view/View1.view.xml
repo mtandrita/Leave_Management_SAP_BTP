@@ -1,382 +1,448 @@
 <mvc:View
+    xmlns:upload="sap.m.upload"
     controllerName="project1.controller.View1"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
-    xmlns:unified="sap.ui.unified">
+    xmlns:unified="sap.ui.unified"
+    displayBlock="true">
 
-    <VBox class="sapUiMediumMargin customBackground">
+    <App id="app" fitContainer="true">
+        <pages>
+            <Page id="page" title="Employee Leave Portal" showHeader="false" scrolling="true">
+                <content>
+                    
+                    <VBox class="sapUiMediumMargin customBackground">
 
-        <!-- Header -->
-        <HBox justifyContent="SpaceBetween" alignItems="Center">
-<Button
-    id="notificationBell"
-    icon="sap-icon://bell"
-    text="0"
-    press="onOpenNotifications"
-    type="Transparent"/>
+                        <HBox justifyContent="End" alignItems="Center" width="100%">
+                            <HBox class="notificationContainer">
+                                <Button
+                                    id="notificationBell"
+                                    icon="sap-icon://bell"
+                                    press="onOpenNotifications"
+                                    type="Transparent"
+                                    class="notificationBell"/>
+                                <Text
+                                    id="notificationBadge"
+                                    text="0"
+                                    visible="false"
+                                    class="notificationBadge"/>
+                            </HBox>
+                        </HBox>
 
-    
+                       <!-- RECTANGULAR CARD CONTAINER -->
+<VBox class="sapUiMediumMarginTop dashboardCard">
+    <!-- Card Header Section -->
+    <HBox alignItems="Start" class="cardHeaderBar sapUiSmallMarginBottom">
+        <core:Icon src="sap-icon://lead" class="cardHeaderIcon sapUiSmallMarginEnd"/>
+        <Title text="Leave Balance Overview" level="H2" class="cardHeaderText"/>
+    </HBox>
 
-    
+    <!-- Content Row -->
+    <HBox
+    justifyContent="SpaceAround"
+    width="100%"
+    wrap="Wrap"
+    class="leaveCardsContainer">
 
+    <!-- Casual -->
+    <VBox class="balanceTile casualCard">
 
-            <Title
-                text="Employee Leave Dashboard"
-                level="H1"/>
+        <HBox alignItems="Center" width="100%">
 
-            <Avatar
-                initials="TM"
-                press="onOpenProfile"
-                tooltip="View Profile"/>
+            <core:Icon
+                src="sap-icon://employee-pane"
+                class="leaveTileIcon casualIcon"/>
+
+            <VBox class="sapUiSmallMarginBegin">
+
+                <Title
+                    text="Casual Leave"
+                    level="H4"
+                    class="leaveTitle"/>
+
+                <HBox alignItems="End">
+
+                    <Text
+                        id="casualBalanceTile"
+                        text="{employeeModel>/casualBalance}"
+                        class="leaveValue"/>
+
+                    <Text
+                        text="Days"
+                        class="leaveDays"/>
+
+                </HBox>
+
+                <Text
+                    text="Available"
+                    class="leaveAvailable"/>
+
+            </VBox>
 
         </HBox>
 
-        <!-- Leave Balance -->
-        <Panel
-            headerText="Leave Balance Overview"
-            class="sapUiMediumMarginTop">
+    </VBox>
 
-            <HBox
-                justifyContent="SpaceAround"
-                wrap="Wrap">
+    <!-- Sick -->
+    <VBox class="balanceTile sickCard">
 
-                <GenericTile
-                    header="Casual Leave"
-                    subheader="Available">
+        <HBox alignItems="Center">
 
-                    <TileContent>
-                    <NumericContent
-    id="casualBalanceTile"
-    value="18"
-    valueColor="Good"/>
-                    </TileContent>
+            <core:Icon
+                src="sap-icon://doctor"
+                class="leaveTileIcon sickIcon"/>
 
-                </GenericTile>
+            <VBox class="sapUiSmallMarginBegin">
 
-                <GenericTile
-                    header="Sick Leave"
-                    subheader="Available">
+                <Title
+                    text="Sick Leave"
+                    level="H4"
+                    class="leaveTitle"/>
 
-                    <TileContent>
-                       <NumericContent
-    id="sickBalanceTile"
-    value="7"
-    valueColor="Good"/>
-                    </TileContent>
+                <HBox alignItems="End">
 
-                </GenericTile>
+                    <Text
+                        id="sickBalanceTile"
+                        text="{employeeModel>/sickBalance}"
+                        class="leaveValue"/>
 
-                <GenericTile
-                    header="Earned Leave"
-                    subheader="Available">
+                    <Text
+                        text="Days"
+                        class="leaveDays"/>
 
-                    <TileContent>
-                        <NumericContent
-                            value="0"
-                            valueColor="Neutral"/>
-                    </TileContent>
+                </HBox>
 
-                </GenericTile>
+                <Text
+                    text="Available"
+                    class="leaveAvailable"/>
 
-            </HBox>
+            </VBox>
 
-        </Panel>
+        </HBox>
 
-        <!-- Policy -->
-        <Panel
-            headerText="Leave Policies"
-            class="sapUiMediumMarginTop">
-            <MessageStrip
-    text="Leave Policy: Employees are entitled to 18 Casual Leaves and 7 Sick Leaves per financial year. Half-Day Leave is permitted for either the Morning or Afternoon session and is counted as 0.5 day."
-    type="Information"
-    showIcon="true"
-    class="sapUiSmallMarginBottom"/>
+    </VBox>
 
-            
-        </Panel>
+    <!-- Paid -->
+    <VBox class="balanceTile paidCard">
 
-        <!-- Calendar -->
-        <Panel
-            headerText="Request Overview"
-            class="sapUiMediumMarginTop">
+        <HBox alignItems="Center">
 
-            
+            <core:Icon
+                src="sap-icon://money-bills"
+                class="leaveTileIcon paidIcon"/>
 
-            <HBox justifyContent="Center">
+            <VBox class="sapUiSmallMarginBegin">
 
-    <unified:Calendar
-        id="calendar1"
-        width="350px"
-        intervalSelection="true"
-        class="sapUiSmallMarginEnd"/>
+                <Title
+                    text="Paid Leave"
+                    level="H4"
+                    class="leaveTitle"/>
 
-    <unified:Calendar
-        id="calendar2"
-        width="350px"
-        intervalSelection="true"/>
+                <HBox alignItems="End">
+
+                    <Text
+                        id="paidLeaveBalanceTile"
+                        text="{employeeModel>/paidLeaveBalance}"
+                        class="leaveValue"/>
+
+                    <Text
+                        text="Days"
+                        class="leaveDays"/>
+
+                </HBox>
+
+                <Text
+                    text="Available"
+                    class="leaveAvailable"/>
+
+            </VBox>
+
+        </HBox>
+
+    </VBox>
 
 </HBox>
+</VBox>
+                         <VBox class="sapUiMediumMarginTop policyCard">
 
-        </Panel>
+    <HBox alignItems="Center">
+        <core:Icon
+            src="sap-icon://message-information"
+            class="cardHeaderIcon sapUiSmallMarginEnd"/>
 
-        <!-- Status Legend -->
+        <Title
+            text="Leave Policies"
+            level="H3"/>
+    </HBox>
+
+    <Text
+        text="Leave Policy: Employees are entitled to 18 Casual Leaves, 7 Sick Leaves and 12 Paid Leaves per financial year. Half-Day Leave is permitted for either the Morning or Afternoon session and is counted as 0.5 day."
+        wrapping="true"
+        class="sapUiSmallMarginTop"/>
+
+</VBox>
+
+                        <VBox class="sapUiMediumMarginTop requestCard">
+
+    <HBox alignItems="Center" class="cardHeaderBar">
+        <core:Icon
+            src="sap-icon://calendar"
+            class="cardHeaderIcon sapUiSmallMarginEnd"/>
+
+        <Title
+            text="Request Overview"
+            level="H2"
+            class="cardHeaderText"/>
+    </HBox>
+
+    <HBox
+        justifyContent="SpaceBetween"
+        alignItems="Start"
+        wrap="Wrap">
+
+        <!-- CALENDAR AREA -->
         <HBox
-            class="sapUiMediumMarginTop"
+            width="75%"
+            justifyContent="Center"
             wrap="Wrap">
 
-            <ObjectStatus
-                text="Pending"
-                state="Warning"
-                class="sapUiSmallMarginEnd"/>
+            <unified:Calendar
+                id="calendar1"
+                width="340px"
+                intervalSelection="true"
+                select="onCalendarSelect"
+                class="sapUiSmallMarginEnd dashboardCalendar"/>
+
+            <unified:Calendar
+                id="calendar2"
+                width="340px"
+                intervalSelection="true"
+                select="onCalendarSelect"
+                class="dashboardCalendar"/>
+
+        </HBox>
+
+        <!-- RIGHT SIDE -->
+        <VBox width="20%" class="legendPanel">
+
+            <Title text="Legend" level="H4"/>
 
             <ObjectStatus
                 text="Approved"
                 state="Success"
-                class="sapUiSmallMarginEnd"/>
+                class="sapUiTinyMarginTop"/>
+
+            <ObjectStatus
+                text="Pending"
+                state="Warning"
+                class="sapUiTinyMarginTop"/>
 
             <ObjectStatus
                 text="Rejected"
-                state="Error"/>
+                state="Error"
+                class="sapUiTinyMarginTop"/>
 
-        </HBox>
+            <ToolbarSeparator class="sapUiMediumMarginTop"/>
 
-        <!-- Buttons -->
-        <HBox class="sapUiMediumMarginTop">
-
-            <Button
-                text="Apply Leave"
-                type="Emphasized"
-                press=".onApplyLeave"/>
+            <Text
+                text="Need to apply for leave?"
+                class="sapUiSmallMarginTop"/>
 
             <Button
-                text="Leave History"
-                class="sapUiTinyMarginBegin"
-                press=".onOpenHistory"/>
+    text="Apply Leave"
+    type="Emphasized"
+    width="100%"
+    icon="sap-icon://paper-plane"
+    iconFirst="false"
+    class="sapUiSmallMarginTop customApplyBtn"
+    press=".onApplyLeave"/>
 
+<Button
+    text="Leave History"
+    width="100%"
+    icon="sap-icon://history"
+    iconFirst="false"
+    class="sapUiSmallMarginTop customHistoryBtn"
+    press=".onOpenHistory"/>
+
+        </VBox>
+
+    </HBox>
+
+</VBox>
+
+                    </VBox>
+                </content>
+
+                <dependents>
+                    <Dialog id="notificationDialog" showHeader="false" contentWidth="550px" class="customNotificationDialog">
+    <content>
+        <HBox alignItems="Center" justifyContent="SpaceBetween" width="100%" class="dialogHeaderArea sapUiSmallMarginBottom">
+            <HBox alignItems="Center">
+                <Button icon="sap-icon://bell" type="Transparent" class="headerIconBell" enabled="false"/>
+                <Title text="Notifications" level="H2" class="headerDialogTitle sapUiTinyMarginBegin"/>
+            </HBox>
+            <Button icon="sap-icon://decline" type="Transparent" press="onCloseNotifications" class="circleCloseButton"/>
         </HBox>
 
-        <Dialog
-    id="notificationDialog"
-    title="Notifications"
-    contentWidth="500px">
+        <List id="notificationList" items="{path: '/Notification', sorter: {path: 'createdAt', descending: true}}" separators="None">
+            <items>
+                <CustomListItem class="notificationStreamCard">
+                    <HBox width="100%" alignItems="Start" class="cardInnerContent">
+                        
+                        <VBox width="75%" class="messageBodyBox">
+                            <Text text="{createdAt}" class="systemTimestampText sapUiTinyMarginBottom"/>
+                            
+                            <Text text="{message}" 
+                                  wrapping="true" 
+                                  class="notificationMessageContent {= ${path: 'isRead', targetType: 'any'} === true ? 'readNormal' : 'unreadBold' }"/>
+                        </VBox>
 
-    <List
-        id="notificationList"
-        items="{/Notification}">
+                        <VBox alignItems="End" class="metaRightBox" style="margin-left: auto;">
+                            <Text text="{status}" class="statusBadgePill {= ${path: 'status', targetType: 'any'} === 'Approved' ? 'badgeApproved' : ${path: 'status', targetType: 'any'} === 'Rejected' ? 'badgeRejected' : 'badgeWarning' }"/>
+                        </VBox>
 
-        <items>
-
-            <StandardListItem
-                title="{message}"
-                description="{createdAt}"/>
-
-        </items>
-
-    </List>
-
-    <endButton>
-
-        <Button
-            text="Close"
-            press="onCloseNotifications"/>
-
-    </endButton>
-
-</Dialog>
-
-        <!-- Profile Dialog -->
-        <Dialog
-            id="profileDialog"
-            title="Employee Profile"
-            contentWidth="350px">
-
-            <VBox class="sapUiMediumMargin">
-
-                <Text text="Name: Tandrita Mukherjee"/>
-                <Text text="Email: mtandrita05@gmail.com"/>
-                <Text text="Phone: +91 8276452101"/>
-                <Text text="Designation: Systems Engineer Intern"/>
-
-            </VBox>
-
-            <endButton>
-
-                <Button
-                    text="Close"
-                    press="onCloseProfile"/>
-
-            </endButton>
-
-        </Dialog>
-
-        <!-- Leave History -->
-        <Dialog
-    id="historyDialog"
-    title="Leave History"
-    contentWidth="700px">
-
-    <Table
-        id="historyTable"
-        items="{/LeaveRequest}">
-
-        <columns>
-
-            <Column>
-                <Text text="Leave Type"/>
-            </Column>
-
-            <Column>
-                <Text text="From"/>
-            </Column>
-
-            <Column>
-                <Text text="To"/>
-            </Column>
-
-            <Column>
-                <Text text="Status"/>
-            </Column>
-
-        </columns>
-
-        <items>
-
-            <ColumnListItem>
-
-                <cells>
-
-                    <Text text="{leaveType}"/>
-
-                    <Text text="{startDate}"/>
-
-                    <Text text="{endDate}"/>
-
-                    <ObjectStatus
-                        text="{status}"
-                        state="{= ${status} === 'Approved' ? 'Success' : ${status} === 'Rejected' ? 'Error' : 'Warning' }"/>
-
-                </cells>
-
-            </ColumnListItem>
-
-        </items>
-
-    </Table>
+                    </HBox>
+                </CustomListItem>
+            </items>
+        </List>
+    </content>
 
     <endButton>
-        <Button
-            text="Close"
-            press="onCloseHistory"/>
+        <Button text="Close" type="Transparent" press="onCloseNotifications" class="footerCloseActionBtn"/>
     </endButton>
+</Dialog>
+                   <Dialog id="historyDialog" showHeader="false" contentWidth="750px" class="customHistoryDialog">
+    <content>
+        <HBox alignItems="Center" justifyContent="SpaceBetween" width="100%" class="dialogHeaderArea sapUiSmallMarginBottom">
+            <HBox alignItems="Center">
+                <Button icon="sap-icon://calendar" type="Transparent" class="headerIconHistory" enabled="false"/>
+                <Title text="Leave History" level="H2" class="headerDialogTitle sapUiTinyMarginBegin"/>
+            </HBox>
+            <Button icon="sap-icon://decline" type="Transparent" press="onCloseHistory" class="circleCloseButton"/>
+        </HBox>
 
+        <Table id="historyTable" items="{path: '/LeaveRequest'}" class="customHistoryTable">
+            <columns>
+                <Column width="35%"><Text text="Leave Type" class="columnHeaderText"/></Column>
+                <Column><Text text="From" class="columnHeaderText"/></Column>
+                <Column><Text text="To" class="columnHeaderText"/></Column>
+                <Column hAlign="End"><Text text="Status" class="columnHeaderText"/></Column>
+            </columns>
+            <items>
+                <ColumnListItem class="historyRowItem">
+                    <cells>
+                        <HBox alignItems="Center" class="leaveTypeCellBox">
+                            <VBox class="historyTypeIconBox {= ${leaveType} === 'Casual Leave' ? 'historyCasualIcon' : ${leaveType} === 'Sick Leave' ? 'historySickIcon' : 'historyPaidIcon' } sapUiSmallMarginEnd">
+                                <core:Icon src="{= ${leaveType} === 'Casual Leave' ? 'sap-icon://umbrella-beach' : ${leaveType} === 'Sick Leave' ? 'sap-icon://doctor' : 'sap-icon://money-bills' }"/>
+                            </VBox>
+                            <Text text="{leaveType}" class="rowMainText fontSemiBold"/>
+                        </HBox>
+
+                        <Text text="{startDate}" class="rowMainText textMutedColor"/>
+
+                        <Text text="{endDate}" class="rowMainText textMutedColor"/>
+
+                        <ObjectStatus text="{status}" 
+                                      state="{= ${status} === 'Approved' ? 'Success' : ${status} === 'Rejected' ? 'Error' : 'Warning' }"
+                                      class="historyStatusBadge"/>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </content>
+
+    <endButton>
+        <Button text="Close" type="Emphasized" press="onCloseHistory" class="dialogFooterBlueBtn"/>
+    </endButton>
 </Dialog>
 
-        <!-- Apply Leave -->
-        <Dialog
-            id="leaveDialog"
-            title="Apply Leave"
-            contentWidth="450px">
-
-            <VBox class="sapUiMediumMargin">
-
-                <Label text="Employee"/>
-
-                <Select id="employeeSelect">
-
-                    <items>
-
-                        <core:Item
-                            text="Tandrita Mukherjee"/>
-
-                    </items>
-
-                </Select>
-
-                <Label text="Leave Type"/>
-
-                <Select id="leaveTypeSelect">
-
-                    <items>
-
-                        <core:Item text="Casual Leave"/>
-                        <core:Item text="Sick Leave"/>
-
-                    </items>
-
-                </Select>
-
-                <Label text="From Date"/>
-
-                <DatePicker id="fromDate"/>
-
-                <Label text="To Date"/>
-
-                <DatePicker id="toDate"/>
-
-                <!-- Half Day -->
-
-                <Label text="Half Day Leave"/>
-
-                <CheckBox
-                    id="halfDayBox"
-                    text="Apply for Half Day"
-                    select=".onHalfDayToggle"/>
-
-                <VBox
-                    id="halfDayContainer"
-                    visible="false"
-                    class="sapUiSmallMarginTop">
-
-                    <Label text="Select Session"/>
-
-                    <SegmentedButton
-                        id="halfDayPeriod">
-
-                        <items>
-
-                            <SegmentedButtonItem
-                                key="Morning"
-                                text="Morning"/>
-
-                            <SegmentedButtonItem
-                                key="Afternoon"
-                                text="Afternoon"/>
-
-                        </items>
-
-                    </SegmentedButton>
-
+                    <Dialog id="leaveDialog" showHeader="false" contentWidth="600px" class="customApplyLeaveDialog">
+    <content>
+        <HBox alignItems="Center" justifyContent="SpaceBetween" width="100%" class="dialogHeaderArea sapUiSmallMarginBottom">
+            <HBox alignItems="Center">
+                <Button icon="sap-icon://calendar" type="Transparent" class="headerIconApply" enabled="false"/>
+                <VBox class="sapUiTinyMarginBegin">
+                    <Title text="Apply Leave" level="H2" class="headerDialogTitle"/>
+                    <Text text="Fill in the details below to submit your leave request" class="headerSubtitleText"/>
                 </VBox>
+            </HBox>
+            <Button icon="sap-icon://decline" type="Transparent" press="onCloseDialog" class="circleCloseButton"/>
+        </HBox>
 
-                <Label text="Reason"/>
+        <VBox class="formLayoutBody sapUiSmallMarginTop">
+            
+            <Label text="Employee" class="customFormLabel"/>
+            <HBox width="100%" alignItems="Center" class="inputIconWrapper sapUiSmallMarginBottom">
+                <core:Icon src="sap-icon://person-placeholder" class="inputFieldInlineIcon"/>
+                <Input value="Tandrita Mukherjee" editable="false" class="customFormInput textMuted"/>
+            </HBox>
 
-                <TextArea
-                    id="reasonText"
-                    rows="4"
-                    placeholder="Enter reason"/>
+            <Label text="Leave Type" required="true" class="customFormLabel"/>
+<Select id="leaveTypeSelect" 
+        width="100%" 
+        valueIcon="sap-icon://folder" 
+        class="customFormSelectWithIcon">
+    <items>
+        <core:Item text="Casual Leave"/>
+        <core:Item text="Sick Leave"/>
+        <core:Item text="Paid Leave"/>
+    </items>
+</Select>
 
+            <HBox width="100%" justifyContent="SpaceBetween" class="sapUiSmallMarginBottom">
+                <VBox width="48%">
+                    <Label text="From Date" required="true" class="customFormLabel"/>
+                    <DatePicker id="fromDate" displayFormat="yyyy-MM-dd" valueFormat="yyyy-MM-dd" placeholder="Select from date" class="customFormDatePicker"/>
+                </VBox>
+                <VBox width="48%">
+                    <Label text="To Date" required="true" class="customFormLabel"/>
+                    <DatePicker id="toDate" displayFormat="yyyy-MM-dd" valueFormat="yyyy-MM-dd" placeholder="Select to date" class="customFormDatePicker"/>
+                </VBox>
+            </HBox>
+
+            <Label text="Half Day Leave" class="customFormLabel"/>
+            <CheckBox id="halfDayBox" text="Apply for Half Day" select=".onHalfDayToggle" class="customFormCheckbox sapUiTinyMarginBottom"/>
+
+            <VBox id="halfDayContainer" visible="false" class="sapUiSmallMarginBottom">
+                <Label text="Select Session" class="customFormLabel"/>
+                <SegmentedButton id="halfDayPeriod" class="customSegmentedButton">
+                    <items>
+                        <SegmentedButtonItem key="Morning" text="Morning"/>
+                        <SegmentedButtonItem key="Afternoon" text="Afternoon"/>
+                    </items>
+                </SegmentedButton>
             </VBox>
 
-            <beginButton>
+            <HBox width="100%" class="infoCalloutBox sapUiSmallMarginBottom" alignItems="Start">
+                <core:Icon src="sap-icon://message-information" class="calloutInfoIcon sapUiTinyMarginEnd"/>
+                <Text text="Half-Day Leave is permitted for either the Morning or Afternoon session and is counted as 0.5 day." class="calloutInfoText"/>
+            </HBox>
 
-                <Button
-                    text="Submit"
-                    type="Emphasized"
-                    press=".onSubmitLeave"/>
+            <Label text="Reason" required="true" class="customFormLabel"/>
+            <TextArea id="reasonText" rows="4" placeholder="Enter reason for leave" width="100%" class="customFormTextArea sapUiSmallMarginBottom"/>
 
-            </beginButton>
+            <Label text="Attachments (Optional)" class="customFormLabel"/>
+            <unified:FileUploader 
+                id="fileUploader" 
+                multiple="true" 
+                width="100%" 
+                sameFilenameAllowed="false" 
+                change=".onFileChange"
+                placeholder="Choose files..."/>
 
-            <endButton>
+        </VBox>
+    </content>
 
-                <Button
-                    text="Cancel"
-                    press="onCloseDialog"/>
+    <buttons>
+        <Button text="Submit" type="Emphasized" press=".onSubmitLeave" class="dialogFooterBlueBtn submitActionBtn"/>
+        <Button text="Cancel" press="onCloseDialog" class="dialogFooterCancelBtn"/>
+    </buttons>
+</Dialog>
+                </dependents>
 
-            </endButton>
-
-        </Dialog>
-
-    </VBox>
-
+            </Page>
+        </pages>
+    </App>
 </mvc:View>

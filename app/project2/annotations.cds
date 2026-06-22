@@ -1,4 +1,5 @@
 using LeaveService as service from '../../srv/service';
+
 annotate service.LeaveRequest with @(
     // Adds the Employee Name as the Main Header Title
     UI.HeaderInfo : {
@@ -64,33 +65,33 @@ annotate service.LeaveRequest with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : '{i18n>Id1}',
+            Label : '{i18n>Id}',
             Value : id,
         },
         {
             $Type : 'UI.DataField',
-            Label : '{i18n>Employeename}',
+            Label : 'Employee Name',
             Value : employeeName,
         },
         {
             $Type : 'UI.DataField',
-            Label : '{i18n>Leavetype}',
+            Label : '{i18n>LeaveType}',
             Value : leaveType,
         },
         {
             $Type : 'UI.DataField',
-            Label : '{i18n>Startdate}',
+            Label : '{i18n>StartDate}',
             Value : startDate,
         },
         {
             $Type : 'UI.DataField',
-            Label : '{i18n>Enddate}',
+            Label : '{i18n>EndDate}',
             Value : endDate,
         },
         {
             $Type : 'UI.DataField',
             Value : status,
-            Label : '{i18n>Status}',
+            Label : '{i18n>Status1}',
             Criticality : (
                 case status
                     when 'Approved' then 3
@@ -108,10 +109,64 @@ annotate service.LeaveRequest with @(
         SortOrder : [
             {
                 $Type : 'UI.SortOrderType',
-                Property : status,
+                Property : createdAt,
                 Descending : true
             }
         ]
+    }
+);
+
+// --- TABS SELECTION ANNOTATIONS ADDED SAFELY HERE ---
+annotate service.LeaveRequest with @(
+    UI.SelectionPresentationVariant #Pending : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : '@UI.PresentationVariant',
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+                {
+                    $Type : 'UI.SelectOptionType',
+                    PropertyName : status,
+                    Ranges : [
+                        {
+                            $Type : 'UI.SelectionRangeType',
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Pending'
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    UI.SelectionPresentationVariant #Approved : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : '@UI.PresentationVariant',
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [
+                {
+                    $Type : 'UI.SelectOptionType',
+                    PropertyName : status,
+                    Ranges : [
+                        {
+                            $Type : 'UI.SelectionRangeType',
+                            Sign : #I,
+                            Option : #EQ,
+                            Low : 'Approved'
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    UI.SelectionPresentationVariant #All : {
+        $Type : 'UI.SelectionPresentationVariantType',
+        PresentationVariant : '@UI.PresentationVariant',
+        SelectionVariant : {
+            $Type : 'UI.SelectionVariantType',
+            SelectOptions : [] // No filters means it gets everything
+        }
     }
 );
 
@@ -124,4 +179,32 @@ annotate service.LeaveRequest with @(
             SelectOptions : []
         }
     }
+);
+annotate service.LeaveRequest with @(
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet1',
+            Label : '{i18n>GeneralInformation}',
+            Target : '@UI.FieldGroup#GeneratedGroup'
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Attachments',
+            Target : 'attachments/@UI.LineItem'
+        }
+    ]
+);
+annotate service.LeaveAttachment with @(
+    UI.LineItem : [
+        {
+            $Type : 'UI.DataFieldWithUrl',
+            Value : fileName,
+            Url   : downloadUrl
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : mimeType
+        }
+    ]
 );

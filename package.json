@@ -32,9 +32,15 @@
   ],
   "cds": {
     "requires": {
-      "[production]": {
-        "auth": "xsuaa",
-        "db": "hana"
+      "auth": {
+        "[production]": {
+          "kind": "xsuaa"
+        }
+      },
+      "db": {
+        "[production]": {
+          "kind": "hana-cloud"
+        }
       }
     }
   }

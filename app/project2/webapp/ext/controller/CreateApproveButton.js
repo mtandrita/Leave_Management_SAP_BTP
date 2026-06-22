@@ -23,9 +23,7 @@ sap.ui.define([
                 await oAction.invoke();
                 oModel.refresh();
 
-                MessageToast.show(
-                    "Leave approved successfully."
-                );
+                MessageToast.show("Leave approved successfully.");
 
             } catch (oError) {
 

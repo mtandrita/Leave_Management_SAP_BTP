@@ -23,6 +23,8 @@ modules:
   path: gen/db
   requires:
   - name: Leave_SAP-db
+    properties:
+      TARGET_CONTAINER: ~{hdi-container-name}
   parameters:
     buildpack: nodejs_buildpack
 - name: Leave_SAP-app-content
@@ -100,7 +102,7 @@ modules:
   - name: srv-api
     group: destinations
     properties:
-      forwardAuthToken: true
+      forwardAuthToken: false
       name: srv-api
       url: ~{srv-url}
   - name: uaa_Leave_SAP
@@ -125,6 +127,8 @@ resources:
   parameters:
     service: hana
     service-plan: hdi-shared
+  properties:
+    hdi-container-name: ${service-name}
 - name: Leave_SAP-repo-host
   type: org.cloudfoundry.managed-service
   parameters:
@@ -167,6 +171,12 @@ resources:
     service-plan: application
   requires:
   - name: app-api
+- name: cross-container-service-1
+  type: org.cloudfoundry.existing-service
+  parameters:
+    service-name: Leave_SAP-db
+  properties:
+    the-service-name: ${service-name}
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true

@@ -6,25 +6,21 @@ sap.ui.define([
     return {
 
         onRejection: async function (oContext) {
-
             try {
+                var oModel = oContext.getModel();
+                var oData = oContext.getObject();
 
-                await oContext.setProperty(
-                    "status",
-                    "Rejected"
-                );
+                var oAction = oModel.bindContext("/rejectLeave(...)");
 
-                MessageToast.show(
-                    "Leave rejected successfully."
-                );
+                oAction.setParameter("ID", oData.id);
 
+                await oAction.invoke();
+                oModel.refresh();
+
+                MessageToast.show("Leave rejected successfully.");
             } catch (oError) {
-
                 console.error(oError);
-
-                MessageToast.show(
-                    "Rejection failed."
-                );
+                MessageToast.show("Rejection failed.");
             }
         }
     };

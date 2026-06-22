@@ -137,5 +137,9 @@
 			"async": true
 		},
 		"flexBundle": false
+	},
+	"sap.cloud": {
+		"public": true,
+		"service": "Leave_Management"
 	}
 }

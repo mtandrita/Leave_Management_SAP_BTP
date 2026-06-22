@@ -118,6 +118,18 @@
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
+              "content": {
+                "header": {
+                  "actions": {
+                    "Notifications": {
+                      "press": "project2.ext.controller.ListReportExt.openNotifications",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "🔔"
+                    }
+                  }
+                }
+              },
               "contextPath": "/LeaveRequest",
               "variantManagement": "None",
               "navigation": {
@@ -127,11 +139,35 @@
                   }
                 }
               },
+              "quickVariantSelection": {
+                "variants": {
+                  "0": {
+                    "key": "pendingItems",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#Pending"
+                  },
+                  "1": {
+                    "key": "approvedItems",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#Approved"
+                  },
+                  "2": {
+                    "key": "allDocs",
+                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#All"
+                  }
+                }
+              },
               "controlConfiguration": {
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
                     "type": "ResponsiveTable",
                     "enableMassEdit": true
+                  },
+                  "actions": {
+                    "ToggleRequestsView": {
+                      "press": "project2.ext.controller.ListPage.onToggleRequestsView",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Show All Requests"
+                    }
                   }
                 }
               },
@@ -166,29 +202,23 @@
                         "placement": "After",
                         "anchor": "CustomApproveButton"
                       }
-                    },
-                    "giveWarning": {
-                      "press": "project2.ext.controller.GiveWarning.onWarning",
-                      "visible": true,
-                      "enabled": true,
-                      "text": "Give Warning",
-                      "position": {
-                        "placement": "Before",
-                        "anchor": "CustomApproveButton"
-                      }
-                    }
-                  }
-                },
-                "body": {
-                  "sections": {
-                    "Balance": {
-                      "template": "project2.ext.fragment.Balance",
-                      "title": "Leave Information"
                     }
                   }
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController": {
+            "controllerName": "project2.ext.controller.ObjectPageController"
+          },
+          "sap.fe.templates.ListReport.ListReportController": {
+            "controllerName": "project2.ext.controller.ListPage"
           }
         }
       }
@@ -200,7 +230,14 @@
   },
   "sap.fe": {
     "app": {
-      "enableLazyLoading": true
+      "enableLazyLoading": true,
+      "hideDraft": {
+        "enabled": true
+      }
     }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "Leave_Management"
   }
 }
