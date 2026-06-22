@@ -42,11 +42,7 @@ The administrative interface provides a bird's-eye view of all system data, allo
 > 🖼️ **Admin Page:**
 > ![Admin Portal](./media/Admin_portal.png)`
 
-### 🎬 Live Demo Video
-Click the placeholder below to watch a complete walkthrough of the application's features, including user switching, data entry, and live database updates.
-
-> 
-> ![Watch the Demo]((https://youtu.be/CfUghhclJds))
+> 🎥 **[Watch the Live Demo Video on YouTube](https://youtu.be/CfUghhclJds)**
 
 ---
 
