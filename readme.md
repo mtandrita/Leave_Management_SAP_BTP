@@ -46,7 +46,7 @@ The administrative interface provides a bird's-eye view of all system data, allo
 Click the placeholder below to watch a complete walkthrough of the application's features, including user switching, data entry, and live database updates.
 
 > 
-> ![Watch the Demo]([https://img.shields.io/badge/YouTube-Video_Demo-red?style=for-the-badge&logo=youtube](https://youtu.be/CfUghhclJds))
+> ![Watch the Demo]((https://youtu.be/CfUghhclJds))
 
 ---
 
