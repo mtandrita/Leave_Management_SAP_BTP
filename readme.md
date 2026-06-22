@@ -1,4 +1,4 @@
-# Channel Manager - SAP BTP Attendance & Channel Operations
+# Leave Management System - SAP BTP Attendance & Channel Operations
 
 An enterprise-grade cloud application developed during my internship at **Infocus Technologies, Kolkata**. This project leverages the **SAP Business Technology Platform (BTP)** to streamline channel management operations and employee tracking. It marks my first hands-on experience building full-stack cloud applications within the SAP ecosystem, utilizing modern development paradigms like the **SAP Cloud Application Programming (CAP) Model**.
 
