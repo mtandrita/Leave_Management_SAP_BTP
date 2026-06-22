@@ -34,13 +34,13 @@ The application is built on a modern, decoupled cloud architecture:
 The employee view focuses on simplicity, allowing quick attendance logging, profile management, and daily task or channel visibility.
 
 > 🖼️ **[PLACEHOLDER: Employee Page Screenshot]**
-> *Replace this text with your image markdown:* `![Employee Dashboard](./path-to-your-image/employee-page.png)`
+> ![Employee Dashboard](./media/Employee_portal.png)`
 
 ### 2. Admin Portal
 The administrative interface provides a bird's-eye view of all system data, allowing managers to view robust data grids, manage user roles, update channel settings, and analyze logs.
 
 > 🖼️ **[PLACEHOLDER: Admin Page Screenshot]**
-> *Replace this text with your image markdown:* `![Admin Portal](./path-to-your-image/admin-page.png)`
+> ![Admin Portal](./media/Admin_portal.png)`
 
 ### 🎬 Live Demo Video
 Click the placeholder below to watch a complete walkthrough of the application's features, including user switching, data entry, and live database updates.
