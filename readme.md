@@ -33,21 +33,20 @@ The application is built on a modern, decoupled cloud architecture:
 ### 1. Employee Dashboard
 The employee view focuses on simplicity, allowing quick attendance logging, profile management, and daily task or channel visibility.
 
-> 🖼️ **[PLACEHOLDER: Employee Page Screenshot]**
+> 🖼️ **Employee Page:**
 > ![Employee Dashboard](./media/Employee_portal.png)`
 
 ### 2. Admin Portal
 The administrative interface provides a bird's-eye view of all system data, allowing managers to view robust data grids, manage user roles, update channel settings, and analyze logs.
 
-> 🖼️ **[PLACEHOLDER: Admin Page Screenshot]**
+> 🖼️ **Admin Page:**
 > ![Admin Portal](./media/Admin_portal.png)`
 
 ### 🎬 Live Demo Video
 Click the placeholder below to watch a complete walkthrough of the application's features, including user switching, data entry, and live database updates.
 
-> 🎥 **[PLACEHOLDER: Demo Video Link or GIF]**
-> *Replace this text with a link to your video or an embedded GIF:*
-> `[![Watch the Demo](https://img.shields.io/badge/YouTube-Video_Demo-red?style=for-the-badge&logo=youtube)](YOUR_VIDEO_URL_HERE)`
+> 
+> ![Watch the Demo]([https://img.shields.io/badge/YouTube-Video_Demo-red?style=for-the-badge&logo=youtube](https://youtu.be/CfUghhclJds))
 
 ---
 
